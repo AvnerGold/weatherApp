@@ -57,7 +57,6 @@ function App() {
       case 'Dust':
       case 'Fog':
       case 'Sand':
-      case 'Dust':
       case 'Ash':
       case 'Squall':
       case 'Tornado':
