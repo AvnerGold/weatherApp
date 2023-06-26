@@ -23,13 +23,13 @@
 
 .weather-card {
   position: relative;
-  width: 300px;
+  width: 500px;
   margin: 0 auto;
   padding: 20px;
-  border: 2px solid;
+  border: 3px solid rgb(122, 128, 50);
   border-radius: 20px;
-  background-color: #0f4c75;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  background-color: #949b3a;
+  box-shadow: 0 0 20px rgba(52, 182, 52, 0.2);
   animation: floatAnimation 3s infinite ease-in-out;
 }
 
@@ -66,7 +66,7 @@
   width: 100%;
   padding: 10px;
   margin-top: 10px;
-  background-color: #3282b8;
+  background-color: #a0b832;
   border: none;
   border-radius: 5px;
   color: #fff;
@@ -83,6 +83,9 @@
 }
 
 .error-message {
-  color: #ff0000;
+  color: #ced120;
   text-align: center;
 }
+
+
+

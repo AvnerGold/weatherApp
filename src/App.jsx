@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { WiDaySunny, WiCloudy, WiRain, WiSnow, WiThunderstorm, WiFog } from 'react-icons/wi';
 import './App.css';
 
 function App() {
@@ -11,7 +12,7 @@ function App() {
   const fetchWeatherData = async () => {
     try {
       const response = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`
+        `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`
       );
 
       if (response.ok) {
@@ -38,8 +39,36 @@ function App() {
     fetchWeatherData();
   };
 
+  const getWeatherIcon = (weather) => {
+    switch (weather) {
+      case 'Clear':
+        return <WiDaySunny size={48} />;
+      case 'Clouds':
+        return <WiCloudy size={48} />;
+      case 'Rain':
+        return <WiRain size={48}/>;
+      case 'Snow':
+        return <WiSnow size={48}/>;
+      case 'Thunderstorm':
+        return <WiThunderstorm size={48}/>;
+      case 'Mist':
+      case 'Smoke':
+      case 'Haze':
+      case 'Dust':
+      case 'Fog':
+      case 'Sand':
+      case 'Dust':
+      case 'Ash':
+      case 'Squall':
+      case 'Tornado':
+        return <WiFog />;
+      default:
+        return null;
+    }
+  };
+
   return (
-    <>
+    <div className="weather-container">
       <div className="weather-card">
         <h2>Weather App</h2>
         <form onSubmit={handleSubmit}>
@@ -56,13 +85,14 @@ function App() {
         {weatherData && (
           <div className="weather-info">
             <h3>{weatherData.name}</h3>
-            <p>Temperature: {parseInt(weatherData.main.temp - 273.15) }°C</p>
+            <div className="weather-icon">{getWeatherIcon(weatherData.weather[0].main)}</div>
+            <p>Temperature: {Math.round(weatherData.main.temp)}°C</p>
             <p>Weather: {weatherData.weather[0].description}</p>
           </div>
         )}
         {error && <p className="error-message">{error}</p>}
       </div>
-    </>
+    </div>
   );
 }
 
